@@ -1,0 +1,35 @@
+#sudoku_table
+{
+	border-collapse: collapse;
+}
+
+#sudoku_table>tbody>tr>td
+{
+	width: 40px;
+	height: 40px;
+	content: ".";
+	border: 1px black solid;
+	text-align: center;
+}
+
+#sudoku_table>tbody>tr>td.fatright
+{
+	border-right: 3px black solid;
+}
+
+#sudoku_table>tbody>tr.fatbottom
+{
+	border-bottom: 3px black solid;
+}
+
+.left
+{
+	float: left;
+	width: 50%;
+}
+
+.right
+{
+	float: left;
+	width: 50%;
+}

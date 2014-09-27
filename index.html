@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sudoku Solver</title>
+    <script src="http://code.jquery.com/jquery-2.1.1.js" type="text/javascript"></script>
+	<script src="binair.js" type="text/javascript"></script>
+    <script src="js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="styles.css" media="screen" />
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  
+  <body>
+  
+  
+ <div class="jumbotron">
+      <div class="container">
+        <h1>Binary Solver</h1>
+        <p>Dit programma geschreven in jQuery/Javascript (met vleugje HTML) lost binaire puzzels op.
+		</p>
+        <p><a href="mailto:dieter@depuydt.eu" class="btn btn-primary btn-lg" role="button">Contacteer me voor meer info &raquo;</a></p>
+      </div>
+    </div>
+
+ <div class="row">
+ <div class="container">
+	<div class="col-md-8">
+    <table id="sudoku_table">
+      <tr>
+        <td><div id="cel0-0"></div></td>
+        <td><div id="cel0-1">0</div></td>
+        <td><div id="cel0-2"></div></td>
+        <td><div id="cel0-3">0</div></td>
+        <td><div id="cel0-4"></div></td>
+        <td><div id="cel0-5"></div></td>
+        <td><div id="cel0-6">1</div></td>
+        <td><div id="cel0-7"></div></td>
+        <td><div id="cel0-8"></div></td>
+        <td><div id="cel0-9"></div></td>
+        <td><div id="cel0-10"></div></td>
+        <td><div id="cel0-11">1</div></td>
+      </tr>
+      <tr>
+        <td><div id="cel1-0">0</div></td>
+        <td><div id="cel1-1">0</div></td>
+        <td><div id="cel1-2"></div></td>
+        <td><div id="cel1-3"></div></td>
+        <td><div id="cel1-4"></div></td>
+        <td><div id="cel1-5">0</div></td>
+        <td><div id="cel1-6"></div></td>
+        <td><div id="cel1-7"></div></td>
+        <td><div id="cel1-8"></div></td>
+        <td><div id="cel1-9"></div></td>
+        <td><div id="cel1-10"></div></td>
+        <td><div id="cel1-11"></div></td>
+      </tr>
+      <tr>
+        <td><div id="cel2-0"></div></td>
+        <td><div id="cel2-1"></div></td>
+        <td><div id="cel2-2"></div></td>
+        <td><div id="cel2-3"></div></td>
+        <td><div id="cel2-4"></div></td>
+        <td><div id="cel2-5"></div></td>
+        <td><div id="cel2-6"></div></td>
+        <td><div id="cel2-7">0</div></td>
+        <td><div id="cel2-8"></div></td>
+		<td><div id="cel2-9"></div></td>
+        <td><div id="cel2-10">0</div></td>
+        <td><div id="cel2-11"></div></td>      
+	  </tr>
+      <tr>
+        <td><div id="cel3-0">1</div></td>
+        <td><div id="cel3-1"></div></td>
+        <td><div id="cel3-2">0</div></td>
+        <td><div id="cel3-3"></div></td>
+        <td><div id="cel3-4"></div></td>
+        <td><div id="cel3-5"></div></td>
+        <td><div id="cel3-6">0</div></td>
+        <td><div id="cel3-7">0</div></td>
+        <td><div id="cel3-8"></div></td>
+		<td><div id="cel3-9"></div></td>
+        <td><div id="cel3-10"></div></td>
+        <td><div id="cel3-11"></div></td>      
+      </tr>
+      <tr>
+        <td><div id="cel4-0"></div></td>
+        <td><div id="cel4-1"></div></td>
+        <td><div id="cel4-2"></div></td>
+        <td><div id="cel4-3"></div></td>
+        <td><div id="cel4-4"></div></td>
+        <td><div id="cel4-5">1</div></td>
+        <td><div id="cel4-6"></div></td>
+        <td><div id="cel4-7"></div></td>
+        <td><div id="cel4-8"></div></td>
+		<td><div id="cel4-9">0</div></td>
+        <td><div id="cel4-10"></div></td>
+        <td><div id="cel4-11">0</div></td>      
+      </tr>
+      <tr>
+        <td><div id="cel5-0">1</div></td>
+        <td><div id="cel5-1"></div></td>
+        <td><div id="cel5-2"></div></td>
+        <td><div id="cel5-3"></div></td>
+        <td><div id="cel5-4">1</div></td>
+        <td><div id="cel5-5"></div></td>
+        <td><div id="cel5-6"></div></td>
+        <td><div id="cel5-7"></div></td>
+        <td><div id="cel5-8">0</div></td>
+		<td><div id="cel5-9"></div></td>
+        <td><div id="cel5-10"></div></td>
+        <td><div id="cel5-11">1</div></td>      
+      </tr>
+      <tr>
+        <td><div id="cel6-0"></div></td>
+        <td><div id="cel6-1"></div></td>
+        <td><div id="cel6-2"></div></td>
+        <td><div id="cel6-3">0</div></td>
+        <td><div id="cel6-4"></div></td>
+        <td><div id="cel6-5"></div></td>
+        <td><div id="cel6-6">1</div></td>
+        <td><div id="cel6-7"></div></td>
+        <td><div id="cel6-8"></div></td>
+		<td><div id="cel6-9"></div></td>
+        <td><div id="cel6-10"></div></td>
+        <td><div id="cel6-11"></div></td>      
+      </tr>
+      <tr>
+        <td><div id="cel7-0"></div></td>
+        <td><div id="cel7-1"></div></td>
+        <td><div id="cel7-2"></div></td>
+        <td><div id="cel7-3"></div></td>
+        <td><div id="cel7-4"></div></td>
+        <td><div id="cel7-5"></div></td>
+        <td><div id="cel7-6"></div></td>
+        <td><div id="cel7-7"></div></td>
+        <td><div id="cel7-8"></div></td>
+        <td><div id="cel7-9"></div></td>
+        <td><div id="cel7-10"></div></td>
+        <td><div id="cel7-11"></div></td>
+      </tr>
+      <tr>
+        <td><div id="cel8-0"></div></td>
+        <td><div id="cel8-1">0</div></td>
+        <td><div id="cel8-2"></div></td>
+        <td><div id="cel8-3"></div></td>
+        <td><div id="cel8-4">1</div></td>
+        <td><div id="cel8-5"></div></td>
+        <td><div id="cel8-6"></div></td>
+        <td><div id="cel8-7"></div></td>
+        <td><div id="cel8-8">1</div></td>
+        <td><div id="cel8-9"></div></td>
+        <td><div id="cel8-10"></div></td>
+        <td><div id="cel8-11">1</div></td>
+      </tr>
+      <tr>
+        <td><div id="cel9-0"></div></td>
+        <td><div id="cel9-1"></div></td>
+        <td><div id="cel9-2">1</div></td>
+        <td><div id="cel9-3"></div></td>
+        <td><div id="cel9-4"></div></td>
+        <td><div id="cel9-5"></div></td>
+        <td><div id="cel9-6"></div></td>
+        <td><div id="cel9-7"></div></td>
+        <td><div id="cel9-8"></div></td>
+        <td><div id="cel9-9">0</div></td>
+        <td><div id="cel9-10"></div></td>
+        <td><div id="cel9-11">1</div></td>
+      </tr>
+      <tr>
+        <td><div id="cel10-0"></div></td>
+        <td><div id="cel10-1"></div></td>
+        <td><div id="cel10-2"></div></td>
+        <td><div id="cel10-3"></div></td>
+        <td><div id="cel10-4"></div></td>
+        <td><div id="cel10-5"></div></td>
+        <td><div id="cel10-6">1</div></td>
+        <td><div id="cel10-7"></div></td>
+        <td><div id="cel10-8"></div></td>
+        <td><div id="cel10-9"></div></td>
+        <td><div id="cel10-10"></div></td>
+        <td><div id="cel10-11"></div></td>
+      </tr>
+      <tr>
+        <td><div id="cel11-0">1</div></td>
+        <td><div id="cel11-1"></div></td>
+        <td><div id="cel11-2">1</div></td>
+        <td><div id="cel11-3"></div></td>
+        <td><div id="cel11-4"></div></td>
+        <td><div id="cel11-5">0</div></td>
+        <td><div id="cel11-6"></div></td>
+        <td><div id="cel11-7"></div></td>
+        <td><div id="cel11-8"></div></td>
+        <td><div id="cel11-9">0</div></td>
+        <td><div id="cel11-10"></div></td>
+        <td><div id="cel11-11"></div></td>
+      </tr>
+    </table>
+	</div>
+	<div class="col-md-4">
+	<div class="panel panel-default">
+	<div class="panel-heading">Help?!</div>
+	<div class="panel-body">
+		<ul>
+		<li>Klik op een blokje en tik het gewenste cijfer in.
+		<li>Het volgende blokje wordt automatisch actief.
+		<li>Tik een nieuw cijfer in of tik een spatie om het blokje leeg te laten en het volgende blokje te activeren.
+		<li>Om een blokje te wijzigen, activeer het en tik een ander cijfer in of een spatie om het leeg te maken.
+		<li>Klik op "Oplossen !" om de puzzel op te lossen.
+		</ul>
+	  
+	   <span class="btn btn-primary btn-lg" id="go">Oplossen !</span><br /><br />
+	  <span class="btn btn-primary btn-lg" id="reset">Ne keer herbeginnen!</span>
+	  </div>
+	  </div>
+  </div>
+  </div>
+  </div>
+  
+  </body>
+</html>
